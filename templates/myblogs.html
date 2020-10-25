@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    My Blogs
+{% endblock %}
+
+{% block body %}
+
+    <br>
+    <br><br><br>
+
+    <h3 style="color:#aa4f9e;"><center> My Blogs</center></h3>
+    <br>
+
+    <div class="container p-5">
+
+        {% for blogs in mybloglist %}
+
+            <ul class="list-unstyled">
+              <li class="media my-4">
+                {% if blogs["category"] == 'Technology' %}
+                <img src="/static/images/technology.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="technology">
+                {% endif %}
+                {% if blogs["category"] == 'Fitness' %}
+                <img src="/static/images/fitness.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="fitness">
+                {% endif %}
+                {% if blogs["category"] == 'Food' %}
+                <img src="/static/images/food.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="food">
+                {% endif %}
+                {% if blogs["category"] == 'Fashion' %}
+                <img src="/static/images/fashion.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="fashion">
+                {% endif %}
+                {% if blogs["category"] == 'Lifestyle' %}
+                <img src="/static/images/lifestyle.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="lifestyle">
+                {% endif %}
+                {% if blogs["category"] == 'Sports' %}
+                <img src="/static/images/sports.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="sports">
+                {% endif %}
+                {% if blogs["category"] == 'Travel' %}
+                <img src="/static/images/travel.jpg" class="card-img-top card-myblog align-self-center" style="height:197px; object-fit: cover;" alt="travel">
+                {% endif %}
+                <div class="media-body">
+                    <div class "entities">
+                        <div class="thumbnail"><h5 class="mt-0 mb-1">{{ blogs["title"] }}</h5></div>
+                        <div class="icons">
+                            <a href="/editblog/{{ blogs['blog_id'] }}" style="color:#212529;"><i class="fa fa-edit"></i></a>
+                            <a href="/deleteblog/{{ blogs['blog_id'] }}" style="color:#212529;"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                  <p class="media-body-category">{{ blogs["category"] }}</p>
+                  <p class= "media-body-content" >{{ blogs["content"] }}</p>
+                </div>
+              </li>
+            </ul>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

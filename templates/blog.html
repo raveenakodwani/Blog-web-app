@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    {% for details in blog_details %}
+        {{ details["category"] }}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+
+    {% for details in blog_details %}
+    <div class="top" style="width:100%; position: relative">
+        {% if details["category"] == 'Technology' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/technology.jpg">
+        {% endif %}
+        {% if details["category"] == 'Fitness' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/fitness.jpg">
+        {% endif %}
+        {% if details["category"] == 'Food' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/food.jpg">
+        {% endif %}
+        {% if details["category"] == 'Fashion' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/fashion.jpg">
+        {% endif %}
+        {% if details["category"] == 'Lifestyle' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/lifestyle.jpg">
+        {% endif %}
+        {% if details["category"] == 'Sports' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/sports.jpg">
+        {% endif %}
+        {% if details["category"] == 'Travel' %}
+            <img class="image" style=" width:100%; height:500px; background-position:center; object-fit:cover" src = "/static/images/travel.jpg">
+        {% endif %}
+        <div class="overlay" style="background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.3);"></div>
+        <div class="heading details" style="text-align:left; position:absolute; top:40%; left:9%;"><br>
+            <p class= "detail-title" style="color:white; font-size:60px; margin-bottom:0; line-height:60px;"><b>{{ details["title"] }}</b></p><br>
+            <p class = "detail-category" style="color:white; font-size:30px; line-height:30px;"><i>#{{ details["category"] }}</i></p><br>
+            <p class = "detail-author" style="color:white; margin-top:20px;"> Posted by {{ details["author"] }} on {{ details["timestamp"] }}</p><br>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="container p-5">
+        <p class= "detail-content" style="overflow: hidden; text-align:justify; white-space: pre-wrap; font-size:18px;" >{{ details["content"] }}</p>
+    </div>
+    {% endfor %}
+
+
+{% endblock %}

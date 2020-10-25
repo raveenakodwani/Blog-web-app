@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password" id="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Password Again" type="password" id="confirm" required>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="show_pass()">
+            <label class="form-check-label" for="exampleCheck1">Show Password</label>
+        </div><br>
+
+        <button class="btn btn-primary read_more" type="submit">Regsiter</button>
+        <br><br>
+
+        <div style="color:red; text-align:center;" >
+            {% for i in err_msg %}
+                <p> {{i}} </p>
+            {% endfor %}
+        </div>
+        <br>
+    </form>
+
+    <script>
+        function show_pass(){
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+
+            var y = document.getElementById("confirm");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+        }
+    </script>
+{% endblock %}

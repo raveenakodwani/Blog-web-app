@@ -1,0 +1,260 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <img class="image" src = "/static/images/cover2.jpg">
+        <div class="overlay"></div>
+        <div class="heading"><br>
+            <h1>Create your own Beautiful Blog</h1>
+            <p>Publish your passion your way!</p><br>
+            <a href="/addblog"><button class="btn btn-primary" type="submit">START NOW</button></a>
+        </div>
+    </div>
+    <br>
+    <br><br><br>
+
+    <h3><center>Blogs</center></h3>
+    <br>
+
+    <div class="container p-5">
+
+      <div class="card main-card ">
+
+        <ul class="nav nav-pills mb-3 nav-fill card-header" id="pills-tab" role="tablist" >
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All Categories</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="technology-tab" data-toggle="pill" href="#pills-technology" role="tab" aria-controls="pills-technology" aria-selected="false">Technology</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="fitness-tab" data-toggle="pill" href="#pills-fitness" role="tab" aria-controls="pills-fitness" aria-selected="false">Fitness</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="food-tab" data-toggle="pill" href="#pills-food" role="tab" aria-controls="pills-food" aria-selected="false">Food</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="fashion-tab" data-toggle="pill" href="#pills-fashion" role="tab" aria-controls="pills-fashion" aria-selected="false">Fashion</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="lifestyle-tab" data-toggle="pill" href="#pills-lifestyle" role="tab" aria-controls="pills-lifestyle" aria-selected="false">Lifestyle</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="sports-tab" data-toggle="pill" href="#pills-sports" role="tab" aria-controls="pills-sports" aria-selected="false">Sports</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="travel-tab" data-toggle="pill" href="#pills-travel" role="tab" aria-controls="pills-travel" aria-selected="false">Travel</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+
+          {{ message }}
+
+          <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="all-tab">
+            {% for blogs in bloglist %}
+              <div class="card card-blogs h-100 ">
+                {% if blogs["category"] == 'Technology' %}
+                <img src="/static/images/technology.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="technology">
+                {% endif %}
+                {% if blogs["category"] == 'Fitness' %}
+                <img src="/static/images/fitness.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="fitness">
+                {% endif %}
+                {% if blogs["category"] == 'Food' %}
+                <img src="/static/images/food.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="food">
+                {% endif %}
+                {% if blogs["category"] == 'Fashion' %}
+                <img src="/static/images/fashion.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="fashion">
+                {% endif %}
+                {% if blogs["category"] == 'Lifestyle' %}
+                <img src="/static/images/lifestyle.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="lifestyle">
+                {% endif %}
+                {% if blogs["category"] == 'Sports' %}
+                <img src="/static/images/sports.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="sports">
+                {% endif %}
+                {% if blogs["category"] == 'Travel' %}
+                <img src="/static/images/travel.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="travel">
+                {% endif %}
+
+                <div class="card-body">
+                  <div class= "category">
+                    <li>{{ blogs["category"] }}</li>
+                  </div>
+                  <div class="author">
+                    <li>Posted by : {{ blogs["author"] }}</li>
+                  </div>
+                  <h5 name ="card-title" class="card-title">{{ blogs["title"] }}</h5>
+                  <p class="card-text">{{ blogs["content"] }}</p>
+                  <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                  <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-technology" role="tabpanel" aria-labelledby="technology-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Technology' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/technology.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="technology">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-fitness" role="tabpanel" aria-labelledby="fitness-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Fitness' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/fitness.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="fitness">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="food-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Food' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/food.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="food">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-fashion" role="tabpanel" aria-labelledby="fashion-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Fashion' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/fashion.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="fashion">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-lifestyle" role="tabpanel" aria-labelledby="lifestyle-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Lifestyle' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/lifestyle.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="lifestyle">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-sports" role="tabpanel" aria-labelledby="sports-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Sports' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/sports.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="sports">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="tab-pane fade" id="pills-travel" role="tabpanel" aria-labelledby="travel-tab">
+            {% for blogs in bloglist %}
+              {% if blogs["category"] == 'Travel' %}
+                <div class="card card-blogs h-100 ">
+                  <img src="/static/images/travel.jpg" class="card-img-top" style="height:197px; object-fit: cover;" alt="travel">
+                  <div class="card-body">
+                      <div class= "category">
+                        <li>{{ blogs["category"] }}</li>
+                      </div>
+                      <div class="author">
+                        <li>Posted by : {{ blogs["author"] }}</li>
+                      </div>
+                    <h5 class="card-title">{{ blogs["title"] }}</h5>
+                    <p class="card-text">{{ blogs["content"] }}</p>
+                    <a href="/blog/{{ blogs['blog_id'] }}" class="btn btn-primary read_more">Read More</a>
+                    <p class ="time">Last updated on {{ blogs["timestamp"] }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+{% endblock %}

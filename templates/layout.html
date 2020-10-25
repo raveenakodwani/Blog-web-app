@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Blog:{% block title %}{% endblock %}</title>
+
+        <!-- CSS only -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="static/styles.css" rel="stylesheet">
+        <!-- css for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@700&display=swap" rel="stylesheet">
+
+        <script src = http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js> </script>
+
+        <!-- jQuery and JS bundle w/ Popper.js -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-light navbar-trans border " style="height:80px;">
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/blogit.png" width="80" height="80" alt="" class="d-inline-block align-center" loading="lazy">
+            </a>
+            <a href="/" style="text-decoration:none; color:#aa4f9e"> <h3 style="font-family: 'Kreon', serif; margin:0; margin-left:-20px;">Blog It!</h3></a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item" style="margin-bottom:10px;"><a class="nav-link" style="padding-left:30px;" href="/">Home</a></li>
+                        <li class="nav-item" style="margin-bottom:10px;"><a class="nav-link" style="padding-left:20px;" href="/addblog">Add Blog</a></li>
+                        <li class="nav-item" style="margin-bottom:10px;"><a class="nav-link" style="padding-left:20px;" href="/myblogs">My Blogs</a></li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item" style="margin-bottom:10px;"><a class="nav-link" style="padding-left:30px;" href="/logout">Log Out</a></li>
+                    </ul>
+
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+
+                {% endif %}
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        {% block body %}
+        {% endblock %}
+
+        <main class="container p-5">
+            {% block main %}
+            {% endblock %}
+        </main>
+
+    </body>
+</html>
